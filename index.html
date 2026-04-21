@@ -100,40 +100,49 @@
     .reveal-delay-3 { transition-delay: 0.24s; }
     .reveal-delay-4 { transition-delay: 0.32s; }
 
-    /* ── Tarjetas servicio ── */
+    /* ── TARJETAS SERVICIO MEJORADAS ── */
     .card-service {
       background: #fff;
-      border: 1px solid #E5E7EB;
-      border-radius: 16px;
-      padding: 1.25rem;
+      /* BORDES MEJORADOS */
+      border: 2px solid #D1D5DB;
+      border-radius: 18px;
+      padding: 1.5rem;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      /* CLAVE: ancho mínimo para evitar que se compriman */
       min-width: 0;
       width: 100%;
       box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .dark .card-service {
       background: #111C2E;
-      border-color: rgba(255,255,255,0.06);
+      /* Bordes más visibles en dark mode */
+      border: 2px solid #1F2937;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+    
+    /* Hover state con borde mejorado */
     .card-service:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      border-color: #0F1B2D;
     }
     .dark .card-service:hover {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      border-color: #C53030;
     }
+
+    /* Línea superior animada */
     .card-service::before {
       content: '';
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 3px;
+      width: 100%; height: 4px;
       background: linear-gradient(90deg, #0F1B2D, #C53030);
       opacity: 0;
       transition: opacity 0.3s ease;
+      border-radius: 16px 16px 0 0;
     }
     .dark .card-service::before {
       background: linear-gradient(90deg, #4a6fa5, #C53030);
@@ -142,50 +151,58 @@
 
     /* ── Icono servicio ── */
     .service-icon {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       background: #F4F6F8;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #E5E7EB;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-center;
       color: #0F1B2D;
-      font-size: 1rem;
-      margin-bottom: 0.875rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
       transition: all 0.3s ease;
       flex-shrink: 0;
     }
     .dark .service-icon {
       background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
       color: #E5E7EB;
     }
     .card-service:hover .service-icon {
       background: #0F1B2D;
       color: #fff;
+      border-color: #0F1B2D;
     }
     .dark .card-service:hover .service-icon {
       background: #C53030;
       color: #fff;
+      border-color: #C53030;
     }
 
     /* ── Steps ── */
     .step-card {
       background: #fff;
-      border: 1px solid #E5E7EB;
-      border-radius: 16px;
+      border: 2px solid #D1D5DB;
+      border-radius: 18px;
       padding: 1.75rem 1.25rem;
       text-align: center;
       position: relative;
       transition: all 0.3s ease;
       min-width: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .dark .step-card {
       background: #111C2E;
-      border-color: rgba(255,255,255,0.06);
+      border-color: #1F2937;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .step-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: #0F1B2D;
     }
     .dark .step-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      border-color: #C53030;
     }
     .step-number {
       width: 46px; height: 46px;
@@ -207,14 +224,14 @@
         top: 23px; right: -26px;
         width: 52px; height: 2px;
         background: repeating-linear-gradient(
-          90deg, #E5E7EB, #E5E7EB 4px,
+          90deg, #D1D5DB, #D1D5DB 4px,
           transparent 4px, transparent 8px
         );
         z-index: 1;
       }
       .dark .step-connector {
         background: repeating-linear-gradient(
-          90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 4px,
+          90deg, #1F2937, #1F2937 4px,
           transparent 4px, transparent 8px
         );
       }
@@ -227,10 +244,11 @@
       padding: 2rem 2rem;
       position: relative;
       overflow: hidden;
+      border: 2px solid #1F2937;
     }
     .dark .payment-banner {
       background: #111C2E;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 2px solid #1F2937;
     }
     .payment-banner::after {
       content: '';
@@ -264,6 +282,7 @@
       color: #fff; font-size: 1.6rem;
       box-shadow: 0 4px 20px rgba(37,211,102,0.45);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 3px solid #fff;
     }
     .float-wa:hover {
       transform: scale(1.08);
@@ -317,20 +336,17 @@
     .dark .theme-btn:hover { background: rgba(255,255,255,0.08); }
 
     /* ── MOBILE GRID FIX ── */
-    /* En móvil: 1 columna siempre */
     .services-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1rem;
     }
-    /* Tablet: 2 columnas */
     @media (min-width: 560px) {
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.1rem;
       }
     }
-    /* Desktop: 3 columnas */
     @media (min-width: 1024px) {
       .services-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -394,7 +410,6 @@
         </a>
 
         <nav class="flex items-center gap-3 sm:gap-5">
-          <!-- Links solo en desktop -->
           <a href="#como-funciona" class="nav-link hidden md:inline">Proceso</a>
           <a href="#servicios" class="nav-link hidden md:inline">Servicios</a>
           <a href="#garantia" class="nav-link hidden md:inline">Garantía</a>
@@ -703,7 +718,7 @@
     <!-- ══════ CTA FINAL ══════ -->
     <section class="py-16 sm:py-24 bg-white dark:bg-[#0F1B2D]">
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="bg-[#0F1B2D] dark:bg-[#111C2E] rounded-3xl px-6 sm:px-12 md:px-16 py-12 sm:py-16 md:py-20 text-center text-white relative overflow-hidden reveal">
+        <div class="bg-[#0F1B2D] dark:bg-[#111C2E] rounded-3xl px-6 sm:px-12 md:px-16 py-12 sm:py-16 md:py-20 text-center text-white relative overflow-hidden reveal border-2 border-[#1F2937]">
 
           <div class="absolute -top-16 -left-16 w-36 h-36 bg-[#C53030]/10 rounded-full blur-3xl pointer-events-none"></div>
           <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-[#C53030]/5 rounded-full blur-3xl pointer-events-none"></div>
