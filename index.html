@@ -103,7 +103,6 @@
     /* ── TARJETAS SERVICIO MEJORADAS ── */
     .card-service {
       background: #fff;
-      /* BORDES MEJORADOS */
       border: 2px solid #D1D5DB;
       border-radius: 18px;
       padding: 1.5rem;
@@ -117,12 +116,10 @@
     }
     .dark .card-service {
       background: #111C2E;
-      /* Bordes más visibles en dark mode */
       border: 2px solid #1F2937;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     
-    /* Hover state con borde mejorado */
     .card-service:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.12);
@@ -133,7 +130,6 @@
       border-color: #C53030;
     }
 
-    /* Línea superior animada */
     .card-service::before {
       content: '';
       position: absolute;
@@ -149,19 +145,26 @@
     }
     .card-service:hover::before { opacity: 1; }
 
-    /* ── Icono servicio ── */
+    /* ── ICONO SERVICIO (CORREGIDO) ── */
     .service-icon {
-  width: 44px; height: 44px;
-  background: #F4F6F8;
-  border: 2px solid #E5E7EB;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  color: #0F1B2D;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
+      width: 44px;
+      height: 44px;
+      background: #F4F6F8;
+      border: 2px solid #E5E7EB;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0F1B2D;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .service-icon i {
+      display: block;
+      line-height: 1;
+    }
     .dark .service-icon {
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.12);
@@ -209,7 +212,9 @@
       background: #0F1B2D;
       color: #fff;
       border-radius: 13px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.2rem; font-weight: 700;
       margin: 0 auto 1.1rem;
     }
@@ -278,7 +283,9 @@
       width: 56px; height: 56px;
       background: #25D366;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff; font-size: 1.6rem;
       box-shadow: 0 4px 20px rgba(37,211,102,0.45);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -324,7 +331,9 @@
     /* ── Theme btn ── */
     .theme-btn {
       width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 10px;
       cursor: pointer; border: none;
       background: transparent;
