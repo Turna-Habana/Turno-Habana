@@ -25,14 +25,25 @@
   <meta name="twitter:description" content="Servicio premium independiente para la gestión de citas consulares en La Habana. Paga solo cuando confirmes tu cita." />
   <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230B1220'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='bold' font-size='56px'%3ETurno Habana%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%23C53030' font-family='sans-serif' font-weight='bold' font-size='32px'%3EGesti%C3%B3n de Citas Consulado Espa%C3%B1a — La Habana%3C/text%3E%3C/svg%3E" />
 
-  <!-- ===== GOOGLE ANALYTICS 4 (¡CAMBIAR EL ID!) ===== -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- ===== GOOGLE ANALYTICS 4 (ACTÍVALO CON TU ID) ===== -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
-  </script> -->
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href*="wa.me"]');
+      if (link) {
+        gtag('event', 'click_whatsapp', {
+          'event_category': 'engagement',
+          'event_label': link.href
+        });
+      }
+    });
+  </script>
+  -->
 
   <!-- ===== Tailwind CSS ===== -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,7 +62,66 @@
       "name": "Turno Habana",
       "description": "Servicio premium independiente para la gestión de citas en el Consulado General de España en La Habana.",
       "url": "https://turna-habana.github.io/Turno-Habana/",
-      "address": { "@type": "PostalAddress", "addressLocality": "La Habana", "addressCountry": "CU" }
+      "address": { "@type": "PostalAddress", "addressLocality": "La Habana", "addressCountry": "CU" },
+      "serviceType": "Gestión de citas consulares",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Agendamiento de citas en el Consulado General de España en La Habana",
+            "description": "Servicio de gestión de citas para trámites consulares como legalización de documentos, certificado de matrimonio, visados, pasaportes y más."
+          }
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda en agendarse una cita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generalmente gestionamos tu cita en menos de 24 horas desde que recibimos tu solicitud por WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es seguro pagar después de la cita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Nuestro compromiso es que primero veas la evidencia de tu cita (captura y PDF) y solo entonces realices el pago."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué trámites puedo agendar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Legalización de documentos, certificado de matrimonio, visados de familiar comunitario y residencia, primer pasaporte, literal de nacimiento, LMD, inscripción de matrimonio y menores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito enviar documentos por adelantado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Solo te pediremos la información necesaria para agendar la cita. Los documentos originales los presentas el día de tu cita en el consulado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Turno Habana es el consulado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Somos un servicio privado independiente que te ayuda a gestionar tu cita en la plataforma oficial del Consulado General de España en La Habana."
+          }
+        }
+      ]
     }
   </script>
 
@@ -64,7 +134,7 @@
     .f-semibold { font-weight: 600; }
     .f-bold     { font-weight: 700; }
 
-    /* Skip link para accesibilidad */
+    /* Skip link (accesibilidad) */
     .skip-link {
       position: absolute; top: -40px; left: 6px; background: #fff; color: #0B1220;
       padding: 8px 16px; z-index: 9999; border-radius: 8px; font-weight: 600;
@@ -72,7 +142,7 @@
     }
     .skip-link:focus { top: 8px; }
 
-    /* Reveal seguro - visible por defecto */
+    /* Reveal seguro: visible por defecto, animación solo si JS */
     .reveal {
       opacity: 1;
       transform: none;
@@ -91,6 +161,7 @@
     .reveal-delay-3 { transition-delay: 0.24s; }
     .reveal-delay-4 { transition-delay: 0.32s; }
 
+    /* Punto */
     .punto-th {
       width: 8px; height: 8px; background: #C53030; border-radius: 50%; display: inline-block;
     }
@@ -103,12 +174,14 @@
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197,48,48,0); }
     }
 
+    /* Patrón puntos */
     .dot-pattern {
       background-image: radial-gradient(circle, #E5E7EB 0.6px, transparent 0.6px);
       background-size: 24px 24px; opacity: 0.02; position: absolute; inset: 0;
       pointer-events: none;
     }
 
+    /* Glow hero */
     .hero-glow {
       position: absolute; width: 500px; height: 500px; border-radius: 50%;
       background: radial-gradient(circle, rgba(197,48,48,0.12) 0%, transparent 70%);
@@ -116,6 +189,7 @@
       pointer-events: none;
     }
 
+    /* Tarjetas */
     .card-service, .step-card {
       background: #111C2E; border: 2px solid #1F2937; border-radius: 18px;
       transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -143,6 +217,30 @@
       justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 1.1rem;
     }
 
+    .step-connector { display: none; }
+    @media (min-width: 768px) {
+      .step-connector {
+        display: block; position: absolute; top: 23px; right: -26px;
+        width: 52px; height: 2px;
+        background: repeating-linear-gradient(90deg, #1F2937, #1F2937 4px, transparent 4px, transparent 8px);
+        z-index: 1;
+      }
+    }
+
+    /* Banner pago */
+    .payment-banner {
+      background: #111C2E; border-radius: 20px; padding: 2rem; position: relative;
+      overflow: hidden; border: 2px solid #1F2937;
+    }
+    .payment-banner::after {
+      content: ''; position: absolute; top: -60px; right: -60px; width: 160px; height: 160px;
+      background: rgba(197,48,48,0.2); border-radius: 50%; filter: blur(40px); pointer-events: none;
+    }
+
+    /* Stats */
+    .stat-number { font-size: 2.25rem; font-weight: 700; color: #fff; line-height: 1; }
+
+    /* Float WA */
     .float-wa {
       position: fixed; bottom: 24px; right: 20px; z-index: 200;
       width: 56px; height: 56px; background: #25D366; border-radius: 50%;
@@ -152,6 +250,7 @@
     }
     .float-wa:hover { transform: scale(1.08); }
 
+    /* CTA */
     .cta-wa-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 14px;
       background: #fff; color: #0F1B2D; font-weight: 700; font-size: 1.25rem;
@@ -159,13 +258,25 @@
     }
     .cta-wa-btn:hover { background: #f3f4f6; transform: translateY(-2px); }
 
-    .services-grid, .steps-grid, .stats-grid {
+    /* Grids */
+    .services-grid, .steps-grid, .stats-grid, .faq-grid {
       display: grid; gap: 1rem;
     }
-    @media (min-width: 560px) { .services-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 560px) { .services-grid, .steps-grid, .faq-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (min-width: 640px) { .stats-grid { gap: 1.5rem; } }
+    @media (min-width: 1024px) { .faq-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* FAQ */
+    .faq-item {
+      background: #111C2E; border: 2px solid #1F2937; border-radius: 18px;
+      padding: 1.25rem; transition: all 0.3s ease;
+    }
+    .faq-item:hover { border-color: #C53030; }
+
+    /* Garantía */
+    .guarantee-bg { background: linear-gradient(180deg, #0B1220 0%, #0F1B2D 100%); }
   </style>
 </head>
 
@@ -192,7 +303,8 @@
           <a href="#como-funciona" class="nav-link hidden md:block">Proceso</a>
           <a href="#servicios" class="nav-link hidden md:block">Servicios</a>
           <a href="#garantia" class="nav-link hidden md:block">Garantía</a>
-          <a href="https://wa.me/5353572432?text=Hola%2C%20quisiera%20informaci%C3%B3n..." 
+          <a href="#faq" class="nav-link hidden md:block">FAQ</a>
+          <a href="https://wa.me/5353572432?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20agendamiento%20de%20citas."
              target="_blank" rel="noopener"
              class="bg-white text-[#0B1220] px-5 py-2.5 rounded-2xl flex items-center gap-2 font-medium text-sm hover:bg-gray-100">
             <i class="fa-brands fa-whatsapp"></i>
@@ -218,14 +330,21 @@
           <strong class="text-white">Pagas solo cuando veas tu cita confirmada.</strong>
         </p>
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-2">
-          <a href="https://wa.me/5353572432?text=Hola%2C%20estoy%20listo%20para%20agendar%20mi%20cita." 
+          <a href="https://wa.me/5353572432?text=Hola%2C%20estoy%20listo%20para%20agendar%20mi%20cita."
              target="_blank" rel="noopener"
              class="cta-wa-btn text-lg">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
             <span>Escribir por WhatsApp</span>
           </a>
+          <a href="#servicios"
+             class="inline-flex items-center justify-center gap-2 border-2 border-white/15 text-white text-lg f-medium px-7 py-3.5 rounded-2xl hover:border-white/30 transition-all w-full sm:w-auto">
+            <span>Ver servicios y precios</span>
+            <i class="fa-solid fa-arrow-down text-sm"></i>
+          </a>
         </div>
-        <p class="text-sm text-gray-400 mt-8">Solo agendamos citas · No solicitamos credenciales oficiales</p>
+        <p class="text-sm text-gray-400 mt-8">
+          Solo agendamos citas · No solicitamos credenciales oficiales
+        </p>
       </div>
     </section>
 
@@ -233,9 +352,18 @@
     <section class="py-10 border-y border-white/10 bg-[#111C2E]">
       <div class="max-w-5xl mx-auto px-6">
         <div class="stats-grid grid-cols-3 text-center">
-          <div class="reveal"><p class="text-4xl font-bold">9</p><p class="text-sm text-gray-400">Trámites</p></div>
-          <div class="reveal reveal-delay-1"><p class="text-4xl font-bold">24h</p><p class="text-sm text-gray-400">Respuesta</p></div>
-          <div class="reveal reveal-delay-2"><p class="text-4xl font-bold">100%</p><p class="text-sm text-gray-400">Transparente</p></div>
+          <div class="reveal">
+            <p class="stat-number">9</p>
+            <p class="text-sm text-gray-400 mt-1">Trámites</p>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <p class="stat-number">24h</p>
+            <p class="text-sm text-gray-400 mt-1">Respuesta</p>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <p class="stat-number">100%</p>
+            <p class="text-sm text-gray-400 mt-1">Transparente</p>
+          </div>
         </div>
       </div>
     </section>
@@ -244,18 +372,307 @@
     <section id="como-funciona" class="py-20 bg-[#0B1220]">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="text-4xl f-semibold reveal">Un proceso claro en 4 pasos</h2>
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-white mb-4 reveal">
+            <i class="fa-solid fa-route text-xs"></i>
+            <span class="text-xs uppercase tracking-wider">Proceso</span>
+          </div>
+          <h2 class="text-4xl f-semibold reveal reveal-delay-1">Un proceso claro en 4 pasos</h2>
+          <p class="mt-3 text-lg text-gray-400 reveal reveal-delay-2">
+            En 4 pasos, tu cita estará gestionada.
+          </p>
         </div>
+
         <div class="steps-grid">
-          <!-- Los 4 pasos se mantienen igual que en tu versión original -->
-          <!-- (Por brevedad no los repito todos aquí, pero están incluidos en la versión completa) -->
+          <div class="step-card p-6 text-center relative reveal reveal-delay-1">
+            <div class="step-connector"></div>
+            <div class="step-number">1</div>
+            <h3 class="f-semibold text-lg mb-2">Contacto inicial</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Nos escribes por WhatsApp indicando el trámite que necesitas agendar.
+            </p>
+          </div>
+          <div class="step-card p-6 text-center relative reveal reveal-delay-2">
+            <div class="step-connector"></div>
+            <div class="step-number">2</div>
+            <h3 class="f-semibold text-lg mb-2">Verificación</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Revisamos la información y confirmamos que todo está correcto.
+            </p>
+          </div>
+          <div class="step-card p-6 text-center relative reveal reveal-delay-3">
+            <div class="step-connector"></div>
+            <div class="step-number">3</div>
+            <h3 class="f-semibold text-lg mb-2">Agenda</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Gestionamos tu cita y te enviamos captura y justificante PDF.
+            </p>
+          </div>
+          <div class="step-card p-6 text-center relative reveal reveal-delay-4">
+            <div class="step-number">4</div>
+            <h3 class="f-semibold text-lg mb-2">Pago al confirmar</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Solo cuando compruebes tu cita, procedes al pago por transferencia.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Servicios, Garantía, FAQ, CTA Final y Footer están incluidos en la versión completa -->
+    <!-- Servicios y precios -->
+    <section id="servicios" class="py-20 bg-[#0F1B2D]">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-white mb-4 reveal">
+            <i class="fa-solid fa-tag text-xs"></i>
+            <span class="text-xs uppercase tracking-wider">Tarifas</span>
+          </div>
+          <h2 class="text-4xl f-semibold reveal reveal-delay-1">Servicios y precios</h2>
+          <p class="mt-3 text-lg text-gray-400 reveal reveal-delay-2">
+            Precios transparentes para cada tipo de trámite.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="card-service p-6 reveal reveal-delay-1">
+            <div class="service-icon"><i class="fa-solid fa-stamp"></i></div>
+            <p class="f-medium text-base text-white">Legalización de Documentos</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              5,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-2">
+            <div class="service-icon"><i class="fa-solid fa-ring"></i></div>
+            <p class="f-medium text-base text-white">Certificado de Matrimonio</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              5,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-3">
+            <div class="service-icon"><i class="fa-solid fa-users"></i></div>
+            <p class="f-medium text-base text-white">Visado de Familiar Comunitario</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,500 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-1">
+            <div class="service-icon"><i class="fa-solid fa-passport"></i></div>
+            <p class="f-medium text-base text-white">
+              Primer Pasaporte
+              <span class="block text-xs f-regular text-[#9CA3AF] mt-0.5">Disponible hasta enero 2026</span>
+            </p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,500 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-2">
+            <div class="service-icon"><i class="fa-solid fa-baby"></i></div>
+            <p class="f-medium text-base text-white">
+              Literal de Nacimiento
+              <span class="block text-xs f-regular text-[#9CA3AF] mt-0.5">Normal y para DNI</span>
+            </p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,500 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-3">
+            <div class="service-icon"><i class="fa-solid fa-id-card"></i></div>
+            <p class="f-medium text-base text-white">Visado de Residencia</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-1">
+            <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <p class="f-medium text-base text-white">LMD</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-2">
+            <div class="service-icon"><i class="fa-solid fa-heart"></i></div>
+            <p class="f-medium text-base text-white">Inscripción de Matrimonio</p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+
+          <div class="card-service p-6 reveal reveal-delay-3">
+            <div class="service-icon"><i class="fa-solid fa-child"></i></div>
+            <p class="f-medium text-base text-white">
+              Inscripción de Menores
+              <span class="block text-xs f-regular text-[#9CA3AF] mt-0.5">Precio por cada menor</span>
+            </p>
+            <p class="mt-2 text-3xl f-bold text-white">
+              1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Payment Banner -->
+        <div class="payment-banner mt-10 reveal">
+          <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative z-10">
+            <div class="flex-shrink-0">
+              <div class="w-14 h-14 bg-[#C53030] rounded-2xl flex items-center justify-center">
+                <i class="fa-solid fa-shield-halved text-white text-2xl"></i>
+              </div>
+            </div>
+            <div class="text-center sm:text-left">
+              <p class="text-xl md:text-2xl f-bold text-white" style="line-height:1.3;">
+                El pago siempre es posterior a la confirmación de la cita.
+              </p>
+              <p class="text-sm f-regular text-gray-300 mt-2 leading-relaxed">
+                Primero agendamos, te mostramos la evidencia y solo entonces procedes al pago por transferencia bancaria. Sin excepciones.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Garantía -->
+    <section id="garantia" class="py-20 guarantee-bg">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C53030]/10 text-[#C53030] mb-5 reveal">
+          <span class="punto-th" style="width:6px;height:6px;"></span>
+          <span class="text-xs uppercase tracking-wider">Confianza antes que todo</span>
+        </div>
+
+        <h2 class="text-4xl f-semibold text-white mb-5 reveal reveal-delay-1">
+          Pagas solo cuando compruebes tu cita.
+        </h2>
+
+        <p class="text-lg text-gray-400 reveal reveal-delay-2" style="line-height:1.6;">
+          Te mostramos evidencia real de que tu cita fue agendada en la plataforma oficial —captura de pantalla y justificante PDF— antes de que realices cualquier pago.
+        </p>
+
+        <div class="mt-8 grid grid-cols-3 gap-3 sm:gap-6 reveal reveal-delay-3">
+          <div class="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-5">
+            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <p class="text-sm f-medium text-white text-center">Captura de pantalla</p>
+          </div>
+          <div class="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-5">
+            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <p class="text-sm f-medium text-white text-center">Justificante en PDF</p>
+          </div>
+          <div class="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-5">
+            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <p class="text-sm f-medium text-white text-center">Notificación Consulado</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-[#0F1B2D]">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-white mb-4 reveal">
+            <i class="fa-solid fa-circle-question text-xs"></i>
+            <span class="text-xs uppercase tracking-wider">FAQ</span>
+          </div>
+          <h2 class="text-4xl f-semibold reveal reveal-delay-1">Preguntas frecuentes</h2>
+          <p class="mt-3 text-lg text-gray-400 reveal reveal-delay-2">
+            Respuestas rápidas para que entiendas el proceso antes de contactarnos.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item reveal reveal-delay-1">
+            <h3 class="f-semibold text-white mb-2">¿Cuánto tiempo tarda en agendarse una cita?</h3>
+            <p class="text-sm text-gray-400">Generalmente gestionamos tu cita en menos de 24 horas desde que recibimos tu solicitud por WhatsApp.</p>
+          </div>
+          <div class="faq-item reveal reveal-delay-2">
+            <h3 class="f-semibold text-white mb-2">¿Es seguro pagar después de la cita?</h3>
+            <p class="text-sm text-gray-400">Sí. Nuestro compromiso es que primero veas la evidencia de tu cita (captura y PDF) y solo entonces realices el pago.</p>
+          </div>
+          <div class="faq-item reveal reveal-delay-3">
+            <h3 class="f-semibold text-white mb-2">¿Qué trámites puedo agendar?</h3>
+            <p class="text-sm text-gray-400">Legalización de documentos, certificado de matrimonio, visados de familiar comunitario y residencia, primer pasaporte, literal de nacimiento, LMD, inscripción de matrimonio y menores.</p>
+          </div>
+          <div class="faq-item reveal reveal-delay-1">
+            <h3 class="f-semibold text-white mb-2">¿Necesito enviar documentos por adelantado?</h3>
+            <p class="text-sm text-gray-400">No. Solo te pediremos la información necesaria para agendar la cita. Los documentos originales los presentas el día de tu cita en el consulado.</p>
+          </div>
+          <div class="faq-item reveal reveal-delay-2">
+            <h3 class="f-semibold text-white mb-2">¿Turno Habana es el consulado?</h3>
+            <p class="text-sm text-gray-400">No. Somos un servicio privado independiente que te ayuda a gestionar tu cita en la plataforma oficial del Consulado General de España en La Habana.</p>
+          </div>
+          <div class="faq-item reveal reveal-delay-3">
+            <h3 class="f-semibold text-white mb-2">¿Cómo me notifican la cita?</h3>
+            <p class="text-sm text-gray-400">Te enviamos la captura de pantalla y el justificante en PDF por WhatsApp, y te confirmamos todos los detalles antes del pago.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 bg-[#0B1220]">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="bg-[#111C2E] rounded-3xl px-6 sm:px-12 md:px-16 py-12 sm:py-16 md:py-20 text-center text-white relative overflow-hidden reveal border-2 border-[#1F2937]">
+
+          <div class="absolute -top-16 -left-16 w-36 h-36 bg-[#C53030]/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-[#C53030]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <h2 class="text-3xl md:text-4xl f-semibold mb-4" style="line-height:1.15;">
+              ¿Listo para agendar tu cita sin complicaciones?
+            </h2>
+            <p class="text-lg text-gray-300 f-regular max-w-lg mx-auto mb-10" style="line-height:1.6;">
+              Contáctanos ahora. Nuestro equipo te asistirá de manera profesional, clara y eficiente.
+            </p>
+            <a href="https://wa.me/5353572432?text=Hola%2C%20estoy%20listo%20para%20agendar%20mi%20cita."
+               target="_blank" rel="noopener"
+               class="cta-wa-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Escribir por WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
   </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-[#0B1220]">
+    <div class="max-w-6xl mx-auto px-6 py-14 text-center">
+
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <span class="text-xl f-semibold text-white" style="letter-spacing:-0.02em;">Turno Habana</span>
+        <span class="punto-th" style="width:5px;height:5px;"></span>
+      </div>
+
+      <p class="text-sm f-regular text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
+        <strong class="text-[#E5E7EB] f-medium">Aviso legal:</strong>
+        Turno Habana es un servicio privado independiente del Consulado General de España.
+        No somos una entidad oficial ni estamos afiliados a organismos gubernamentales.
+        Nuestro servicio consiste exclusivamente en la gestión de citas mediante la plataforma consular.
+      </p>
+
+      <p class="text-xs text-[#9CA3AF]/50 mt-6 f-regular">
+        © 2026 Turno Habana · Todos los derechos reservados.
+      </p>
+
+    </div>
+  </footer>
 
   <!-- Script para activar JS y animaciones -->
   <script>
@@ -271,7 +688,7 @@
             entry.target.classList.add('visible');
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
       reveals.forEach(el => observer.observe(el));
     } else {
       reveals.forEach(el => el.classList.add('visible'));
