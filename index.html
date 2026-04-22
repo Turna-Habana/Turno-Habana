@@ -54,7 +54,7 @@
     .reveal-delay-3 { transition-delay: 0.24s; }
     .reveal-delay-4 { transition-delay: 0.32s; }
 
-    /* Estilos Accordion FAQ */
+    /* Accordion FAQ */
     .faq-item { background: #111C2E; border: 2px solid #1F2937; border-radius: 18px; overflow: hidden; margin-bottom: 10px; transition: border-color 0.3s; }
     .faq-item:hover { border-color: #C53030; }
     .faq-header { cursor: pointer; transition: background 0.3s; }
@@ -67,17 +67,13 @@
     @keyframes pulseDot { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197,48,48,0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(197,48,48,0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197,48,48,0); } }
     .dot-pattern { background-image: radial-gradient(circle, #E5E7EB 0.6px, transparent 0.6px); background-size: 24px 24px; opacity: 0.02; position: absolute; inset: 0; pointer-events: none; }
     .hero-glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(197,48,48,0.12) 0%, transparent 70%); top: -150px; left: 50%; transform: translateX(-50%); filter: blur(60px); pointer-events: none; }
-    .card-service, .step-card { background: #111C2E; border: 2px solid #1F2937; border-radius: 18px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .card-service, .step-card, .evidence-card { background: #111C2E; border: 2px solid #1F2937; border-radius: 18px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
     @media (prefers-reduced-motion: no-preference) {
-      .card-service:hover, .step-card:hover { transform: translateY(-4px); border-color: #C53030; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+      .card-service:hover, .step-card:hover, .evidence-card:hover { transform: translateY(-4px); border-color: #C53030; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
     }
     .service-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #E5E7EB; margin-bottom: 1rem; }
     .card-service:hover .service-icon { background: #C53030; border-color: #C53030; }
     .step-number { width: 46px; height: 46px; background: #C53030; color: #fff; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 1.1rem; }
-    .step-connector { display: none; }
-    @media (min-width: 768px) {
-      .step-connector { display: block; position: absolute; top: 23px; right: -26px; width: 52px; height: 2px; background: repeating-linear-gradient(90deg, #1F2937, #1F2937 4px, transparent 4px, transparent 8px); z-index: 1; }
-    }
     .stat-number { font-size: 2.25rem; font-weight: 700; color: #fff; line-height: 1; }
     .float-wa { position: fixed; bottom: 24px; right: 20px; z-index: 200; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,0.45); border: 3px solid #fff; transition: all 0.3s ease; }
     .float-wa:hover { transform: scale(1.08); }
@@ -86,10 +82,11 @@
     .guarantee-bg { background: linear-gradient(180deg, #0B1220 0%, #0F1B2D 100%); }
 
     /* Grids */
-    .services-grid, .steps-grid, .stats-grid { display: grid; gap: 1rem; }
-    @media (min-width: 560px) { .services-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+    .services-grid, .steps-grid, .stats-grid, .evidence-grid { display: grid; gap: 1rem; }
+    @media (min-width: 560px) { .services-grid, .steps-grid, .evidence-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1024px) { .evidence-grid { grid-template-columns: repeat(3, 1fr); } }
   </style>
 </head>
 
@@ -116,8 +113,7 @@
           <a href="#servicios" class="text-sm f-medium text-gray-400 hover:text-white hidden md:block">Servicios</a>
           <a href="#garantia" class="text-sm f-medium text-gray-400 hover:text-white hidden md:block">Garantía</a>
           <a href="#faq" class="text-sm f-medium text-gray-400 hover:text-white hidden md:block">FAQ</a>
-          <a href="https://wa.me/5353572432?text=Hola%2C%20quisiera%20informaci%C3%B3n"
-             target="_blank" rel="noopener"
+          <a href="https://wa.me/5353572432?text=Hola%2C%20quisiera%20informaci%C3%B3n" target="_blank" rel="noopener"
              class="bg-white text-[#0B1220] px-5 py-2.5 rounded-xl flex items-center gap-2 font-medium text-sm hover:bg-gray-100">
             <i class="fa-brands fa-whatsapp"></i>
             <span>Contactar</span>
@@ -138,7 +134,7 @@
           Gestionamos tu cita en el Consulado General de España en La Habana
         </h1>
         <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto reveal reveal-delay-1">
-          Servicio premium independiente, claro y transparente.
+          Servicio premium independiente, claro y transparente. 
           <strong class="text-white">Pagas solo cuando veas tu cita confirmada.</strong>
         </p>
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-2">
@@ -164,18 +160,9 @@
     <section class="py-10 border-y border-white/10 bg-[#111C2E]">
       <div class="max-w-5xl mx-auto px-6">
         <div class="stats-grid grid-cols-3 text-center">
-          <div class="reveal">
-            <p class="stat-number">9</p>
-            <p class="text-sm text-gray-400 mt-1">Trámites</p>
-          </div>
-          <div class="reveal reveal-delay-1">
-            <p class="stat-number">24h</p>
-            <p class="text-sm text-gray-400 mt-1">Respuesta</p>
-          </div>
-          <div class="reveal reveal-delay-2">
-            <p class="stat-number">100%</p>
-            <p class="text-sm text-gray-400 mt-1">Transparente</p>
-          </div>
+          <div class="reveal"><p class="stat-number">9</p><p class="text-sm text-gray-400 mt-1">Trámites</p></div>
+          <div class="reveal reveal-delay-1"><p class="stat-number">24h</p><p class="text-sm text-gray-400 mt-1">Respuesta</p></div>
+          <div class="reveal reveal-delay-2"><p class="stat-number">100%</p><p class="text-sm text-gray-400 mt-1">Transparente</p></div>
         </div>
       </div>
     </section>
@@ -196,24 +183,24 @@
             <div class="step-connector"></div>
             <div class="step-number">1</div>
             <h3 class="f-semibold text-lg mb-2">Contacto inicial</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">Nos escribes por WhatsApp indicando el trámite que necesitas agendar.</p>
+            <p class="text-sm text-gray-400">Nos escribes por WhatsApp indicando el trámite que necesitas agendar.</p>
           </div>
           <div class="step-card p-6 text-center relative reveal reveal-delay-2">
             <div class="step-connector"></div>
             <div class="step-number">2</div>
             <h3 class="f-semibold text-lg mb-2">Verificación</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">Revisamos la información y confirmamos que todo está correcto.</p>
+            <p class="text-sm text-gray-400">Revisamos la información y confirmamos que todo está correcto.</p>
           </div>
           <div class="step-card p-6 text-center relative reveal reveal-delay-3">
             <div class="step-connector"></div>
             <div class="step-number">3</div>
             <h3 class="f-semibold text-lg mb-2">Agenda</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">Gestionamos tu cita y te enviamos captura y justificante PDF.</p>
+            <p class="text-sm text-gray-400">Gestionamos tu cita y te enviamos captura y justificante PDF.</p>
           </div>
           <div class="step-card p-6 text-center relative reveal reveal-delay-4">
             <div class="step-number">4</div>
             <h3 class="f-semibold text-lg mb-2">Pago al confirmar</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">Solo cuando compruebes tu cita, procedes al pago por transferencia.</p>
+            <p class="text-sm text-gray-400">Solo cuando compruebes tu cita, procedes al pago por transferencia.</p>
           </div>
         </div>
       </div>
@@ -222,7 +209,6 @@
     <!-- Servicios y precios -->
     <section id="servicios" class="py-20 bg-[#0F1B2D]">
       <div class="max-w-6xl mx-auto px-6">
-
         <div class="text-center mb-12">
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-white mb-4 reveal">
             <i class="fa-solid fa-tag text-xs"></i>
@@ -255,24 +241,40 @@
           <div class="card-service p-6 reveal reveal-delay-2">
             <div class="service-icon"><i class="fa-solid fa-baby"></i></div>
             <p class="f-medium text-base text-white">Literal de Nacimiento</p>
+            <p class="text-xs f-regular text-[#9CA3AF] mt-1">Literal Normal y Para DNI</p>
             <p class="mt-2 text-3xl f-bold text-white">1,500 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span></p>
+            <p class="text-xs text-amber-400 mt-3 text-left">Solo Disponible para Inscritos en los libros del Registro Civil del Consulado de La Habana (Tomo y Folio).</p>
           </div>
           <div class="card-service p-6 reveal reveal-delay-3">
             <div class="service-icon"><i class="fa-solid fa-id-card"></i></div>
             <p class="f-medium text-base text-white">Visado de Residencia</p>
             <p class="mt-2 text-3xl f-bold text-white">1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span></p>
           </div>
+          <div class="card-service p-6 reveal reveal-delay-1">
+            <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <p class="f-medium text-base text-white">LMD</p>
+            <p class="mt-2 text-3xl f-bold text-white">1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span></p>
+          </div>
+          <div class="card-service p-6 reveal reveal-delay-2">
+            <div class="service-icon"><i class="fa-solid fa-heart"></i></div>
+            <p class="f-medium text-base text-white">Inscripción de Matrimonio</p>
+            <p class="mt-2 text-3xl f-bold text-white">1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span></p>
+          </div>
+          <!-- Nueva tarjeta -->
+          <div class="card-service p-6 reveal reveal-delay-3">
+            <div class="service-icon"><i class="fa-solid fa-child"></i></div>
+            <p class="f-medium text-base text-white">Inscripción de Menores</p>
+            <p class="text-xs f-regular text-[#9CA3AF] mt-1">Inscripción por Ley 36 y Directa</p>
+            <p class="mt-2 text-3xl f-bold text-white">1,000 <span class="text-sm f-medium text-[#9CA3AF]">CUP</span></p>
+            <p class="text-xs text-amber-400 mt-3">por menor a inscribir</p>
+          </div>
         </div>
-
-        <!-- (CAPTURA 1) Segmento eliminado: Payment Banner -->
-
       </div>
     </section>
 
-    <!-- Garantía (CAPTURA 2) -->
+    <!-- Garantía -->
     <section id="garantia" class="py-20 guarantee-bg">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-
+      <div class="max-w-4xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C53030]/10 text-[#C53030] mb-5 reveal">
           <span class="punto-th" style="width:6px;height:6px;"></span>
           <span class="text-xs uppercase tracking-wider">Confianza antes que todo</span>
@@ -282,36 +284,52 @@
           Pagas solo cuando compruebes tu cita.
         </h2>
 
-        <p class="text-lg text-gray-400 reveal reveal-delay-2" style="line-height:1.6;">
+        <p class="text-lg text-gray-400 reveal reveal-delay-2 max-w-2xl mx-auto" style="line-height:1.6;">
           Te mostramos evidencia real de que tu cita fue agendada en la plataforma oficial antes de que realices cualquier pago.
         </p>
 
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 reveal reveal-delay-3">
-          <div class="step-card p-6 text-left flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white flex-shrink-0">
-              <i class="fa-solid fa-camera text-lg"></i>
-            </div>
-            <div>
-              <p class="f-semibold text-white">Captura de Pantalla</p>
-              <p class="text-sm text-gray-400 mt-1">Evidencia visual de la cita agendada en la plataforma.</p>
+        <div class="evidence-grid mt-12">
+          <div class="evidence-card p-6 text-left reveal">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white flex-shrink-0">
+                <i class="fa-solid fa-camera text-xl"></i>
+              </div>
+              <div>
+                <p class="f-semibold text-white text-lg">Captura de Pantalla</p>
+                <p class="text-sm text-gray-400 mt-2">Evidencia visual directa de la cita agendada.</p>
+              </div>
             </div>
           </div>
 
-          <div class="step-card p-6 text-left flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white flex-shrink-0">
-              <i class="fa-solid fa-file-pdf text-lg"></i>
+          <div class="evidence-card p-6 text-left reveal reveal-delay-1">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white flex-shrink-0">
+                <i class="fa-solid fa-file-pdf text-xl"></i>
+              </div>
+              <div>
+                <p class="f-semibold text-white text-lg">Justificante en PDF de la Plataforma</p>
+                <p class="text-sm text-gray-400 mt-2">Documento oficial generado por el sistema consular.</p>
+              </div>
             </div>
-            <div>
-              <p class="f-semibold text-white">Justificante en PDF de la Plataforma</p>
-              <p class="text-sm text-gray-400 mt-1">Documento PDF generado por la plataforma con los detalles de la cita.</p>
+          </div>
+
+          <!-- Nueva tarjeta solicitada -->
+          <div class="evidence-card p-6 text-left reveal reveal-delay-2">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white flex-shrink-0">
+                <i class="fa-solid fa-envelope text-xl"></i>
+              </div>
+              <div>
+                <p class="f-semibold text-white text-lg">Notificación automática por correo</p>
+                <p class="text-sm text-gray-400 mt-2">Recibirá una notificación automática del Consulado por correo con los datos de su cita siempre que el trámite los soporte.</p>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- FAQ Acordeon -->
+    <!-- FAQ -->
     <section id="faq" class="py-20 bg-[#0F1B2D]">
       <div class="max-w-3xl mx-auto px-6">
         <div class="text-center mb-12">
@@ -350,6 +368,17 @@
             </button>
             <div class="faq-content px-5 pb-5 hidden">
               <p>No. Somos un servicio privado independiente que te ayuda a gestionar tu cita en la plataforma oficial del Consulado General de España en La Habana.</p>
+            </div>
+          </div>
+
+          <!-- Nueva pregunta FAQ -->
+          <div class="faq-item reveal">
+            <button class="faq-header flex justify-between items-center w-full p-5" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="f-semibold text-white">¿Recibiré siempre notificación automática por correo del Consulado?</span>
+              <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 hidden">
+              <p>Recibirá una notificación automática del Consulado por correo con los datos de su cita al email que utilizo para solicitar sus credenciales o crear su usuario (Notaría) siempre que el trámite lo soporte. Algunos como el de "Primer Pasaporte" no envían estas notificaciones. El Gestor siempre le aclarará si su trámite lo soporta o no.</p>
             </div>
           </div>
         </div>
